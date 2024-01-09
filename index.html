@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wizualizacja Sortowania</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-4">
+        <h1>Wizualizacja Sortowania</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <canvas id="visualizationCanvas" class="d-block" width="400" height="200"></canvas>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="sortingForm">
+                            <div class="form-group">
+                                <label for="arraySize">Rozmiar tablicy:</label>
+                                <input type="number" class="form-control" id="arraySize" min="1" value="20" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="valueRange">Zakres wartości:</label>
+                                <input type="number" class="form-control" id="valueRange" min="20" value="50" required>
+                            </div>
+                            <button type="button" class="btn btn-primary mb-2" onclick="init()">Start</button>
+                            <div class="form-group">
+                                <label for="sortingAlgorithm">Wybierz algorytm sortowania:</label>
+                                <select class="form-control" id="sortingAlgorithm">
+                                    <option value="bubbleSort">Sortowanie bąbelkowe</option>
+                                    <option value="quickSort">Sortowanie szybkie</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-success" onclick="visualizeSorting()">Wizualizacja procesu sortowania</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
