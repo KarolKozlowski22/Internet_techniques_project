@@ -48,7 +48,7 @@ def login_user():
         if user:
             return redirect(url_for('login_success'))
         else:
-            print('Nieprawidłowy e-mail lub hasło', 'danger')
+            flash('Nieprawidłowy e-mail lub hasło', 'danger')
             return redirect(url_for('login'))
 
 
