@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from models.models import db, User
+from sqlalchemy.exc import IntegrityError
 
 
 app = Flask(__name__)
@@ -32,10 +33,14 @@ def register_user():
         new_user = User(name=name, lastName=lastName, email=email, password=password)
 
         with app.app_context():
-            db.session.add(new_user)
-            db.session.commit()
-
-        return redirect(url_for('registration_success'))
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for('registration_success'))
+            except IntegrityError:
+                db.session.rollback()
+                # flash('Użytkownik o podanym adresie email już istnieje.', 'error')
+                return redirect(url_for('registration_error'))
 
 @app.route('/login-user', methods=['POST'])
 def login_user():
@@ -48,18 +53,25 @@ def login_user():
         if user:
             return redirect(url_for('login_success'))
         else:
-            flash('Nieprawidłowy e-mail lub hasło', 'danger')
-            return redirect(url_for('login'))
-
+            return redirect(url_for('login_error'))
 
 
 @app.route('/registration-success')
 def registration_success():
     return render_template('registered_logged.html')
 
+@app.route('/registration-error')
+def registration_error():
+    return render_template('error.html', error_messages="Uzytkownik o podanych danych już istnieje")
+
 @app.route('/login-success')
 def login_success():
     return render_template('registered_logged.html')
+
+@app.route('/login-error')
+def login_error():
+    return render_template("error.html", error_message="Nieprawidlowy email lub hasło")
+
 
 
 @app.route('/register')
