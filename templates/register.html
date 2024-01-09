@@ -1,3 +1,5 @@
+<!-- templates/register.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,24 +17,24 @@
             <div class="col-md-4 offset-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <form id="registerForm">
+                        <form method="POST" action="{{ url_for('register_user') }}">
                             <div class="form-group">
                                 <label for="firstName">Imię:</label>
-                                <input type="text" class="form-control" id="firstName" required>
+                                <input type="text" class="form-control" id="firstName" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Nazwisko:</label>
-                                <input type="text" class="form-control" id="lastName" required>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Hasło:</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
-                            <button type="button" class="btn btn-success" onclick="register()">Zarejestruj się</button>
+                            <button type="submit" class="btn btn-success">Zarejestruj się</button>
                         </form>
                         <button type="button" class="btn btn-secondary mt-3" onclick="goToHomePage()">Powrót do strony głównej</button>
                     </div>
@@ -45,12 +47,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../static/js/script.js"></script>
-    <script>
-        // Funkcja symulująca rejestrację (do dostosowania pod prawdziwą funkcjonalność)
-        function register() {
-            alert('Rejestracja...');
-        }
-    </script>
+
 </body>
 
 </html>
