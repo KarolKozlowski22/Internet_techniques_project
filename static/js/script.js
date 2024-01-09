@@ -155,3 +155,15 @@ function showBars(array, move = null) {
     }
 }
 
+
+function redirectToLogin(){
+    window.location.href="/login";
+}
+
+function goToHomePage(){
+    window.location.href="/main";
+}
+
+function redirectToRegister(){
+    window.location.href="/register";
+}
