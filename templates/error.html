@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Registration Error</title>
+    <title>Błąd logowania lub rejestracji</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
@@ -12,9 +12,7 @@
         <h1 class="text-danger">Registration Error</h1>
         {% if error_messages %}
             <div class="alert alert-danger">
-                    {% for message in error_messages %}
-                        {{message}}
-                    {% endfor %}
+                   {{error_messages}}
             </div>
         {% endif %}
         <button type="button" class="btn btn-info" onclick="redirectToRegister()">Powrót do rejestracji</button>
