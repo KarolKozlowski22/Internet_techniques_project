@@ -39,7 +39,6 @@ def register_user():
                 return redirect(url_for('registration_success'))
             except IntegrityError:
                 db.session.rollback()
-                # flash('Użytkownik o podanym adresie email już istnieje.', 'error')
                 return redirect(url_for('registration_error'))
 
 @app.route('/login-user', methods=['POST'])
@@ -58,7 +57,7 @@ def login_user():
 
 @app.route('/registration-success')
 def registration_success():
-    return render_template('registered_logged.html')
+    return render_template('registraion_success.html', flash_messages="Pomyślnie zarejestrowano użytkownika!")
 
 @app.route('/registration-error')
 def registration_error():
@@ -66,13 +65,11 @@ def registration_error():
 
 @app.route('/login-success')
 def login_success():
-    return render_template('registered_logged.html')
+    return render_template('logged.html')
 
 @app.route('/login-error')
 def login_error():
-    return render_template("error.html", error_message="Nieprawidlowy email lub hasło")
-
-
+    return render_template("error.html", error_messages="Nieprawidłowy email lub hasło")
 
 @app.route('/register')
 def register():
