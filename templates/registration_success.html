@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pomyślna rejestracja</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+
+<body class="bg-light">
+
+    <div class="container mt-4">
+        <h1 class="text-danger">Registration Error</h1>
+        {% if flash_messages %}
+            <div class="alert alert-danger">
+                   {{flash_messages}}
+            </div>
+        {% endif %}
+        <button type="button" class="btn btn-primary"onclick="redirectToLogin()">Zaloguj się</button>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>
