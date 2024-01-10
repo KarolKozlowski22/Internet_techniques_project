@@ -167,3 +167,19 @@ function goToHomePage(){
 function redirectToRegister(){
     window.location.href="/register";
 }
+
+function saveParameters() {
+    const arraySize = document.getElementById('arraySize').value;
+    const valueRange = document.getElementById('valueRange').value;
+    const sortingAlgorithm = document.getElementById('sortingAlgorithm').value;
+
+    const parameters = {
+        arraySize: arraySize,
+        valueRange: valueRange,
+        sortingAlgorithm: sortingAlgorithm
+    };
+
+    sessionStorage.setItem('sortingParameters', JSON.stringify(parameters));
+
+    alert('Parametry zostały zapisane.');
+}
