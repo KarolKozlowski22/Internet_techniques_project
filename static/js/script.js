@@ -1,4 +1,5 @@
 let audioCtx = null;
+let array=[];
 const canvas = document.getElementById('visualizationCanvas');
 const ctx = canvas.getContext('2d');
 const canvasWidth = canvas.width;
@@ -13,7 +14,7 @@ function init(n=null, valueRange=null) {
     }
 
 
-    let array = generateRandomArray(n, valueRange);
+    array = generateRandomArray(n, valueRange);
     showBars(array);
 }
 
@@ -211,15 +212,25 @@ function saveChoice() {
         dynamicParamsForm.innerHTML='';
         
         dynamicForm.innerHTML = `
-            <div class="form-group">
-                <label for="newArraySize">Nowy rozmiar tablicy:</label>
-                <input type="number" class="form-control" id="newArraySize" min="10" max="100" value="100" required>
-            </div>
-            <div class="form-group">
-                <label for="newValueRange">Nowy zakres wartości:</label>
-                <input type="number" class="form-control" id="newValueRange" min="20" value="50" required>
-            </div>
-            <button type="button" class="btn btn-success" onclick="visualizeSorting()">Wizualizacja procesu sortowania</button>
+            <form id="sortingForm">
+                <div class="form-group">
+                    <label for="newArraySize">Nowy rozmiar tablicy:</label>
+                    <input type="number" class="form-control" id="arraySize" min="10" max="100" value="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="newValueRange">Nowy zakres wartości:</label>
+                    <input type="number" class="form-control" id="valueRange" min="20" max="50" value="20" required>
+                </div>
+                <div class="form-group">
+                    <label for="sortingAlgorithm">Wybierz algorytm sortowania:</label>
+                    <select class="form-control" id="sortingAlgorithm">
+                        <option value="bubbleSort">Sortowanie bąbelkowe</option>
+                        <option value="quickSort">Sortowanie szybkie</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary mb-2" onclick="init()">Start</button>
+                <button type="button" class="btn btn-success" onclick="visualizeSorting()">Wizualizacja procesu sortowania</button>
+            </form>
         `;
         dynamicParamsForm.appendChild(dynamicForm);
     }
