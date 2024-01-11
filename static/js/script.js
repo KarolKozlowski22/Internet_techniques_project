@@ -232,6 +232,7 @@ function saveChoice() {
                 </div>
                 <button type="button" class="btn btn-primary mb-2" onclick="init()">Start</button>
                 <button type="button" class="btn btn-success" onclick="visualizeSorting()">Wizualizacja procesu sortowania</button>
+                <button type="button" class="btn btn-info" onclick="saveParameters()">Zapisz parametry</button>
             </form>
         `;
         dynamicParamsForm.appendChild(dynamicForm);
@@ -241,5 +242,19 @@ function saveChoice() {
 function stopAnimation(){
     location.reload();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const savedParameters = JSON.parse(sessionStorage.getItem('sortingParameters'));
+    console.log(window.location.pathname);
+    if (savedParameters && window.location.pathname.includes('login-success')) {
+        const message = `Zapisane parametry:\nRozmiar tablicy: ${savedParameters.arraySize}\nZakres wartości: ${savedParameters.valueRange}\nAlgorytm sortowania: ${savedParameters.sortingAlgorithm}`;
+        alert(message);
+    }
+    else if (window.location.pathname.includes('login-success')) {
+        alert('Brak zapisanych parametrów.');
+    }
+});
+
+
 
 

@@ -57,7 +57,7 @@ def login_user():
 
 @app.route('/registration-success')
 def registration_success():
-    return render_template('registraion_success.html', flash_messages="Pomyślnie zarejestrowano użytkownika!")
+    return render_template('registration_success.html', flash_messages="Pomyślnie zarejestrowano użytkownika!")
 
 @app.route('/registration-error')
 def registration_error():
