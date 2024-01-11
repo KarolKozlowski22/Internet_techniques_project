@@ -1,1 +1,44 @@
-<p>Jesteś na stronie użytkownika</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Witaj w Panelu Użytkownika</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-4">
+        <h1>Witaj w Panelu Użytkownika</h1>
+        <div class="row">
+            <div class="col-md-8">
+                    <canvas id="visualizationCanvas" class="d-block" width="400" height="200"></canvas>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Wizualizacja Sortowania</h5>
+                            <label for="parametres">Wybierz parametry:</label>
+                            <select class="form-control" id="paramChoice">
+                                <option value="savedParams">Użyj zapisanych parametrów</option>
+                                <option value="newParams">Dodaj nowe parametry</option>
+                            </select>
+                            <button type="button" class="btn btn-success" onclick="saveChoice()">Zapisz wybór</button>
+                        <div id="dynamicParamsForm">
+                        </div>
+                        <button type="button" class="btn btn-danger mt-3" onclick="redirectToLogin()">Wyloguj się</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

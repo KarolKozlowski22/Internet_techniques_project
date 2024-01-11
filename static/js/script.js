@@ -1,18 +1,19 @@
-let array = [];
 let audioCtx = null;
 const canvas = document.getElementById('visualizationCanvas');
 const ctx = canvas.getContext('2d');
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
 
-function init() {
-    const arraySizeInput = document.getElementById('arraySize');
-    n = parseInt(arraySizeInput.value);
+function init(n=null, valueRange=null) {
+    if(n==null && valueRange==null){
+        const arraySizeInput = document.getElementById('arraySize');
+        n = parseInt(arraySizeInput.value);
+        const valueRangeInput = document.getElementById('valueRange');
+        valueRange = parseInt(valueRangeInput.value);
+    }
 
-    const valueRangeInput = document.getElementById('valueRange');
-    const valueRange = parseInt(valueRangeInput.value);
 
-    array = generateRandomArray(n, valueRange);
+    let array = generateRandomArray(n, valueRange);
     showBars(array);
 }
 
@@ -53,9 +54,12 @@ function visualizeQuickSort(copy) {
     showBars(array);
 }
 
-function visualizeSorting() {
+function visualizeSorting(selectedAlgorithm=null) {
     const copy = [...array];
-    const selectedAlgorithm = document.getElementById('sortingAlgorithm').value;
+    
+    if(selectedAlgorithm==null){
+        selectedAlgorithm = document.getElementById('sortingAlgorithm').value;
+    }
 
     if (selectedAlgorithm === 'bubbleSort') {
         visualizeBubbleSort(copy);
@@ -137,7 +141,7 @@ function showBars(array, move = null) {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     const maxValue = Math.max(...array);
 
-    const barWidth = canvasWidth / n;
+    const barWidth = canvasWidth / array.length;
     const maxBarHeight = canvasHeight;
 
     for (let i = 0; i < array.length; i++) {
@@ -183,3 +187,43 @@ function saveParameters() {
 
     alert('Parametry zostały zapisane.');
 }
+
+function saveChoice() {
+    const parametresSelect = document.getElementById('paramChoice');
+    console.log(parametresSelect.value);
+
+    if (parametresSelect.value === 'savedParams') {
+        const dynamicParamsForm = document.getElementById('dynamicParamsForm');
+        dynamicParamsForm.innerHTML='';
+        const savedParameters = JSON.parse(sessionStorage.getItem('sortingParameters'));
+        if(savedParameters){
+            init(savedParameters.arraySize, savedParameters.valueRange);
+            visualizeSorting(savedParameters.sortingAlgorithm);
+        }
+        else{
+            alert('Brak zapisanych parametrów.');
+        }
+        
+     
+    } else {
+        const dynamicForm = document.createElement('form');
+        const dynamicParamsForm = document.getElementById('dynamicParamsForm');
+        dynamicParamsForm.innerHTML='';
+        
+        dynamicForm.innerHTML = `
+            <div class="form-group">
+                <label for="newArraySize">Nowy rozmiar tablicy:</label>
+                <input type="number" class="form-control" id="newArraySize" min="10" max="100" value="100" required>
+            </div>
+            <div class="form-group">
+                <label for="newValueRange">Nowy zakres wartości:</label>
+                <input type="number" class="form-control" id="newValueRange" min="20" value="50" required>
+            </div>
+            <button type="button" class="btn btn-success" onclick="visualizeSorting()">Wizualizacja procesu sortowania</button>
+        `;
+        dynamicParamsForm.appendChild(dynamicForm);
+    }
+}
+
+
+
