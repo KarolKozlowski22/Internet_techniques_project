@@ -4,6 +4,7 @@ const canvas = document.getElementById('visualizationCanvas');
 const ctx = canvas.getContext('2d');
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
+let animationId;
 
 function init(n=null, valueRange=null) {
     if(n==null && valueRange==null){
@@ -12,7 +13,6 @@ function init(n=null, valueRange=null) {
         const valueRangeInput = document.getElementById('valueRange');
         valueRange = parseInt(valueRangeInput.value);
     }
-
 
     array = generateRandomArray(n, valueRange);
     showBars(array);
@@ -40,6 +40,8 @@ function playNote(freq){
     node.gain.value=0.1;
     osc.connect(node);
     node.connect(audioCtx.destination);
+    animationId = requestAnimationFrame(() => animate(moves));
+
 }
 
 function visualizeBubbleSort(copy){
@@ -236,5 +238,8 @@ function saveChoice() {
     }
 }
 
+function stopAnimation(){
+    location.reload();
+}
 
 
